@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from "axios"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons'
-import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons'
 
+import MediaCard from './components/MediaCard'
 
 function App() {
 
@@ -40,27 +38,6 @@ function App() {
   };
 
 
-
-  // Funzione per creare le stelle
-  function Stars({ vote }) {
-    const voteStars = Math.ceil(vote / 2); // voto da 1 a 5
-
-    const starsArray = [];
-
-    for (let i = 1; i <= 5; i++) {
-      if (i <= voteStars) {
-        starsArray.push(<FontAwesomeIcon icon={fullStar} key={i} style={{ color: 'gold' }} />);
-      } else {
-        starsArray.push(<FontAwesomeIcon icon={emptyStar} key={i} style={{ color: 'gold' }} />);
-      }
-    }
-
-    return <div>{starsArray}</div>;
-  }
-
-
-
-
   return (
     <>
       <div className="container">
@@ -82,51 +59,8 @@ function App() {
         </nav>
 
         <div className="row">
-          {movies.map((movie) => (
-            <div key={movie.id} className="col-md-4 mb-4">
-              <div className="card h-100 shadow">
-                <img
-                  src={movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                    : 'https://via.placeholder.com/300x450?text=No+Image'}
-                  alt={movie.name}
-                  style={{ objectFit: "cover", height: "300px" }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text">
-                    <strong>Titolo originale:</strong> {movie.original_title}<br />
-                    <strong>Lingua:</strong> {movie.original_language}<br />
-                    <strong>Voto:</strong> {movie.vote_average}
-                    <Stars vote={movie.vote_average} />
-
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {series.map((serie) => (
-            <div key={serie.id} className="col-md-4 mb-4">
-              <div className="card h-100 shadow">
-                <img
-                  src={serie.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${serie.poster_path}`
-                    : 'https://via.placeholder.com/300x450?text=No+Image'}
-                  alt={serie.name}
-                  style={{ objectFit: "cover", height: "300px" }}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{serie.name}</h5>
-                  <p className="card-text">
-                    <strong>Titolo originale:</strong> {serie.original_name}<br />
-                    <strong>Lingua:</strong> {serie.original_language}<br />
-                    <strong>Voto:</strong> {serie.vote_average}
-                    <Stars vote={serie.vote_average} />
-                  </p>
-                </div>
-              </div>
-            </div>
+          {combinedResult.map(item => (
+            <MediaCard key={item.id} item={item} />
           ))}
         </div>
       </div>
