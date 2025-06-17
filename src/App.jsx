@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from "axios"
-
+import APIContext from "./src/context/APIContext"
 import MediaCard from './components/MediaCard'
 
 function App() {
@@ -14,6 +14,9 @@ function App() {
   const [filterTitle, setFilterTitle] = useState("breaking")
 
   const api_key = "5142f8b5902e824e62a1db4ec19840e6"
+
+  // usecontext
+  // const { brand } = useContext(APIContext);   per capire cosa prendere chiedere se andiamo a posizionare direttamente la function handlesearch e poi la prendiamo dal consumer 
 
   const combinedResult = [...movies, ...series]
 

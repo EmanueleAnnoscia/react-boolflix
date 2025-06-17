@@ -4,8 +4,11 @@ import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons'
 import ReactCountryFlag from "react-country-flag"
 
 
+
 function MediaCard({ item }) {
     const isMovie = !!item.title;
+
+    
 
     // Funzione per creare le stelle
     function Stars({ vote }) {
