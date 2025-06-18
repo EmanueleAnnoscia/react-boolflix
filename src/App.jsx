@@ -11,7 +11,7 @@ function AppContent() {
   return (
     <>
     <AppHeader />
-      <div className="container-lg bg-dark">
+      <div className="container-fluid px-0 bg-dark">
         <div className="row">
           {combinedResult.map(item => (
             <MediaCard key={item.id} item={item} />
